@@ -1,31 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Jordons Blog</title>
-    </head>
-    <body>
-        <header>
-            Jordon Rowley
-        </header>
-        <h2>I like to learn how things work & then build new things</h2>
+{% extends 'blog/base.html' %}
 
-        <h3>my skills include</h3>
-        <ul>
-            <li>Python</li>
-            <li>HTML & CSS</li>
-            <li>SQL & DB design</li>
-            <li>Googling</li>
-        </ul>
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </article>
+    {% endfor %}
 
-        <section>
-            {% for post in posts %}
-                <article>
-                    <time>published: {{ post.published_date }}</time>
-                    <h2><a href="">{{ post.title }}</a></h2>
-                    <p>{{ post.text|linebreaksbr }}</p>
-                </article>
-                {{ post }}
-            {% endfor %}
-        </section>
-    </body>
-</html>
+{% endblock %}
+            
