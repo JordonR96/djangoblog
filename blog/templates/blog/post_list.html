@@ -5,7 +5,7 @@
     </head>
     <body>
         <header>
-            <h1>Jordons Blog</h1>
+            Jordon Rowley
         </header>
         <h2>I like to learn how things work & then build new things</h2>
 
@@ -16,5 +16,16 @@
             <li>SQL & DB design</li>
             <li>Googling</li>
         </ul>
+
+        <section>
+            {% for post in posts %}
+                <article>
+                    <time>published: {{ post.published_date }}</time>
+                    <h2><a href="">{{ post.title }}</a></h2>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </article>
+                {{ post }}
+            {% endfor %}
+        </section>
     </body>
 </html>
